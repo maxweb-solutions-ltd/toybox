@@ -5,6 +5,7 @@ import path from 'node:path';
 const rootDir = process.cwd();
 
 function makeInputKey(file) {
+    // Rollup input names cannot use path separators, so normalize paths into stable keys.
     return file
         .replace(/\\/g, '/')
         .replace(/\.[^/.]+$/, '')
@@ -14,11 +15,10 @@ function makeInputKey(file) {
 function getInputs() {
     const inputs = {};
 
+    // Treat theme-level, block-level, and shortcode-level JS/CSS files as Vite entrypoints.
     const patterns = [
         'resources/scss/**/*.{scss,css}',
         'resources/js/**/*.{js,ts}',
-        'blocks/*/resources/scss/**/*.{scss,css}',
-        'blocks/*/resources/js/**/*.{js,ts}',
         'shortcodes/*/resources/scss/**/*.{scss,css}',
         'shortcodes/*/resources/js/**/*.{js,ts}'
     ];
@@ -30,6 +30,7 @@ function getInputs() {
     });
 
     files.forEach((file) => {
+        // Store absolute paths for Rollup while keeping readable manifest keys.
         inputs[makeInputKey(file)] = path.resolve(rootDir, file);
     });
 
@@ -37,6 +38,7 @@ function getInputs() {
 }
 
 function getAssetOutputPath(assetInfo) {
+    // Vite passes the source file path here; use it to mirror the source structure in public/build.
     const originalName = assetInfo.name ? assetInfo.name.replace(/\\/g, '/') : '';
 
     if (originalName.startsWith('resources/scss/')) {
@@ -45,16 +47,6 @@ function getAssetOutputPath(assetInfo) {
 
     if (originalName.startsWith('resources/js/')) {
         return 'js/[name]-[hash][extname]';
-    }
-
-    const blockScssMatch = originalName.match(/^blocks\/([^/]+)\/resources\/scss\/(.+)$/);
-    if (blockScssMatch) {
-        return `blocks/${blockScssMatch[1]}/css/[name]-[hash][extname]`;
-    }
-
-    const blockJsMatch = originalName.match(/^blocks\/([^/]+)\/resources\/js\/(.+)$/);
-    if (blockJsMatch) {
-        return `blocks/${blockJsMatch[1]}/js/[name]-[hash][extname]`;
     }
 
     const shortcodeScssMatch = originalName.match(/^shortcodes\/([^/]+)\/resources\/scss\/(.+)$/);
@@ -71,17 +63,13 @@ function getAssetOutputPath(assetInfo) {
 }
 
 function getChunkOutputPath(chunkInfo) {
+    // JS entries expose a facade module, which lets us route block/shortcode output beside its source.
     const facade = chunkInfo.facadeModuleId
         ? path.relative(rootDir, chunkInfo.facadeModuleId).replace(/\\/g, '/')
         : '';
 
     if (facade.startsWith('resources/js/')) {
         return 'js/[name]-[hash].js';
-    }
-
-    const blockJsMatch = facade.match(/^blocks\/([^/]+)\/resources\/js\/(.+)$/);
-    if (blockJsMatch) {
-        return `blocks/${blockJsMatch[1]}/js/[name]-[hash].js`;
     }
 
     const shortcodeJsMatch = facade.match(/^shortcodes\/([^/]+)\/resources\/js\/(.+)$/);
@@ -96,6 +84,7 @@ export default defineConfig(({ command }) => {
     const isDev = command === 'serve';
 
     return {
+        // Production asset URLs are resolved by WordPress, so keep the built paths relative.
         base: isDev ? '/' : '',
         publicDir: false,
         resolve: {
@@ -118,6 +107,7 @@ export default defineConfig(({ command }) => {
                 host: 'localhost',
             },
             watch: {
+                // Polling is more reliable in local/containerized WordPress environments.
                 usePolling: true,
                 interval: 100,
                 ignored: [
@@ -138,6 +128,7 @@ export default defineConfig(({ command }) => {
             rollupOptions: {
                 input: getInputs(),
                 output: {
+                    // Keep emitted files grouped by their theme, block, or shortcode source folder.
                     entryFileNames: (chunkInfo) => getChunkOutputPath(chunkInfo),
                     chunkFileNames: 'js/chunks/[name]-[hash].js',
                     assetFileNames: (assetInfo) => getAssetOutputPath(assetInfo)

@@ -7,3 +7,7 @@
 .wp-block {
     max-width: 100%;
 }
+
+html :where(.wp-block) {
+    max-width: 100%;
+}
