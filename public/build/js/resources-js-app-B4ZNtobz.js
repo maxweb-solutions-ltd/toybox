@@ -1,0 +1,2 @@
+import{lazyLoading as e}from"./resources-js-libs-deferring-D3Xkjj-T.js";import{simpleHeader as t}from"./resources-js-partials-templates-header-simple-header-BahsK0Nv.js";document.addEventListener(`DOMContentLoaded`,()=>{e()}),t();
+//# sourceMappingURL=resources-js-app-B4ZNtobz.js.map

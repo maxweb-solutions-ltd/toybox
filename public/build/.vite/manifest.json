@@ -1,16 +1,18 @@
 {
   "resources/js/app.js": {
-    "file": "js/resources-js-app-C2PV0zQL.js",
+    "file": "js/resources-js-app-B4ZNtobz.js",
     "name": "resources-js-app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
       "resources/js/libs/deferring.js",
-      "resources/js/libs/deferring.js"
+      "resources/js/libs/deferring.js",
+      "resources/js/partials/templates/header/simple-header.js",
+      "resources/js/partials/templates/header/simple-header.js"
     ]
   },
   "resources/js/editor.js": {
-    "file": "js/resources-js-editor-DgLliJtA.js",
+    "file": "js/resources-js-editor-BlHeGX8C.js",
     "name": "resources-js-editor",
     "src": "resources/js/editor.js",
     "isEntry": true,
@@ -20,9 +22,15 @@
     ]
   },
   "resources/js/libs/deferring.js": {
-    "file": "js/resources-js-libs-deferring-BxJzsftJ.js",
+    "file": "js/resources-js-libs-deferring-D3Xkjj-T.js",
     "name": "resources-js-libs-deferring",
     "src": "resources/js/libs/deferring.js",
+    "isEntry": true
+  },
+  "resources/js/partials/templates/header/simple-header.js": {
+    "file": "js/resources-js-partials-templates-header-simple-header-BahsK0Nv.js",
+    "name": "resources-js-partials-templates-header-simple-header",
+    "src": "resources/js/partials/templates/header/simple-header.js",
     "isEntry": true
   },
   "resources/scss/_fonts.scss": {
@@ -30,7 +38,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -54,7 +61,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -69,7 +75,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -84,7 +89,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -95,7 +99,7 @@
     "isEntry": true
   },
   "resources/scss/critical.scss": {
-    "file": "assets/resources-scss-critical-BcGpWySD.css",
+    "file": "assets/resources-scss-critical-BohtRlzV.css",
     "name": "resources-scss-critical",
     "names": [
       "resources-scss-critical.css"
@@ -117,7 +121,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -132,7 +135,6 @@
     "name": "resources-scss-_fonts",
     "names": [
       "resources-scss-_grid.css",
-      "resources-scss-style.css",
       "resources-scss-_fonts.css",
       "resources-scss-_mixins.css",
       "resources-scss-_variables.css",
@@ -142,19 +144,33 @@
     "src": "resources/scss/_fonts.scss",
     "isEntry": true
   },
-  "resources/scss/style.scss": {
-    "file": "assets/resources-scss-_fonts-x1XGuNl0.css",
-    "name": "resources-scss-_fonts",
+  "resources/scss/partials/templates/footer/_simple-footer.scss": {
+    "file": "assets/resources-scss-style-Deyw0Qax.css",
+    "name": "resources-scss-partials-templates-footer-_simple-footer",
     "names": [
-      "resources-scss-_grid.css",
       "resources-scss-style.css",
-      "resources-scss-_fonts.css",
-      "resources-scss-_mixins.css",
-      "resources-scss-_variables.css",
-      "resources-scss-partials-_footer.css",
-      "resources-scss-partials-_header.css"
+      "resources-scss-partials-templates-footer-_simple-footer.css"
     ],
-    "src": "resources/scss/_fonts.scss",
+    "src": "resources/scss/partials/templates/footer/_simple-footer.scss",
+    "isEntry": true
+  },
+  "resources/scss/partials/templates/header/_simple-header.scss": {
+    "file": "assets/resources-scss-partials-templates-header-_simple-header-CIw0RyYS.css",
+    "name": "resources-scss-partials-templates-header-_simple-header",
+    "names": [
+      "resources-scss-partials-templates-header-_simple-header.css"
+    ],
+    "src": "resources/scss/partials/templates/header/_simple-header.scss",
+    "isEntry": true
+  },
+  "resources/scss/style.scss": {
+    "file": "assets/resources-scss-style-Deyw0Qax.css",
+    "name": "resources-scss-partials-templates-footer-_simple-footer",
+    "names": [
+      "resources-scss-style.css",
+      "resources-scss-partials-templates-footer-_simple-footer.css"
+    ],
+    "src": "resources/scss/partials/templates/footer/_simple-footer.scss",
     "isEntry": true
   }
 }
