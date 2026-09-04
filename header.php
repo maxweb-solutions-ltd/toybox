@@ -6,7 +6,7 @@ use Toybox\Core\Components\Header;
 
 ?>
 <!doctype html>
-<html <?php language_attributes() ?> class="no-js" lang="en-GB">
+<html <?php language_attributes() ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo('charset') ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
